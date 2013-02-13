@@ -81,7 +81,6 @@ public class Obstacle implements Runnable {
 				}
 			}
 
-			// 睡眠加捕获异常
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

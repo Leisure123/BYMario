@@ -107,8 +107,8 @@ public class Enemy implements Runnable {
 				boolean canLeft = true;
 				boolean canRight = true;
 
-				for (int i = 0; i < this.bg.getAllObstruction().size(); i++) {
-					Obstacle ob = this.bg.getAllObstruction().get(i);
+				for (int i = 0; i < this.bg.getObstacles().size(); i++) {
+					Obstacle ob = this.bg.getObstacles().get(i);
 					// 不允许继续向右移动
 					if (ob.getX() == this.x + 60
 							&& (ob.getY() + 55 > this.y && ob.getY() - 55 < this.y)) {
@@ -190,8 +190,8 @@ public class Enemy implements Runnable {
 	public void dead() {
 		// 将显示的图片修改为死亡时的图片
 		this.showImage = ResLoader.allTriangleImage.get(2);
-		this.bg.getAllEnemy().remove(this);
-		this.bg.getRemovedEnemy().add(this);
+		this.bg.getEnemies().remove(this);
+		this.bg.getEnemiesRemoved().add(this);
 	}
 
 }

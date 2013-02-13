@@ -210,8 +210,8 @@ public class Mario implements Runnable {
 				//
 				boolean onLand = false;
 
-				for (int i = 0; i < this.bg.getAllObstruction().size(); i++) {
-					Obstacle ob = this.bg.getAllObstruction().get(i);
+				for (int i = 0; i < this.bg.getObstacles().size(); i++) {
+					Obstacle ob = this.bg.getObstacles().get(i);
 					// 不允许继续向右移动
 					if (ob.getX() == this.x + 60
 							&& (ob.getY() + 55 > this.y && ob.getY() - 55 < this.y)) {
@@ -239,31 +239,24 @@ public class Mario implements Runnable {
 						// 对于砖块儿的处理
 						if (ob.getType() == 0) {
 							// 将该砖块儿从场景中移除
-							this.bg.getAllObstruction().remove(ob);
+							this.bg.getObstacles().remove(ob);
 							// 不能直接把它扔掉，Mario挂掉的时候还要重置。保存到一个集合中
-							this.bg.getRemovedObstruction().add(ob);
+							this.bg.getObstaclesRemoved().add(ob);
 						}
 
-						// 对于问号的处理
-						if ((ob.getType() == 4 || ob.getType() == 3)
-								&& upTime > 0) {
+						// 对于问号的处理 (对于隐藏砖块的处理)
+						if ((ob.getType() == 4 || ob.getType() == 3) && upTime > 0) {
 							ob.setType(2);
 							ob.setImage();
 						}
-
-						// 对于隐藏砖块的处理
-						// if(ob.getType() == 3) {
-						// ob.setType(2);
-						// ob.setImage();
-						// }
-						// 与上一个if语句合并到一起
+						
 						upTime = 0;
 					}
 
 				}
 				// 加入mario对敌人的判断
-				for (int i = 0; i < this.bg.getAllEnemy().size(); i++) {
-					Enemy e = this.bg.getAllEnemy().get(i);
+				for (int i = 0; i < this.bg.getEnemies().size(); i++) {
+					Enemy e = this.bg.getEnemies().get(i);
 					if (e.getX() + 50 > this.x
 							&& e.getX() - 50 < this.x
 							&& (e.getY() + 50 > this.y && e.getY() - 50 < this.y)) {
@@ -347,7 +340,6 @@ public class Mario implements Runnable {
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

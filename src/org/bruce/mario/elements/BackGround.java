@@ -21,19 +21,21 @@ public class BackGround {
 	private boolean isOver = false;
 	// 定义降旗结束的标记
 	private boolean isDown = false;
+
 	// 全部的敌人
-	private List<Enemy> allEnemy = new ArrayList<Enemy>();
-	// 全部的障碍物
-	private List<Obstacle> allObstruction = new ArrayList<Obstacle>();
+	private List<Enemy> enemies = new ArrayList<Enemy>();
 	// 被消灭的敌人
-	private List<Enemy> removedEnemy = new ArrayList<Enemy>();
+	private List<Enemy> enemiesRemoved = new ArrayList<Enemy>();
+
+	// 全部的障碍物
+	private List<Obstacle> obstacles = new ArrayList<Obstacle>();
 	// 被消灭的障碍物
-	private List<Obstacle> removedObstruction = new ArrayList<Obstacle>();
+	private List<Obstacle> obstaclesRemoved = new ArrayList<Obstacle>();
 
 	// 使敌人开始移动
 	public void enemyStartMove() {
-		for (int i = 0; i < this.allEnemy.size(); ++i) {
-			this.allEnemy.get(i).startMove();
+		for (int i = 0; i < enemies.size(); ++i) {
+			enemies.get(i).startMove();
 		}
 	}
 
@@ -42,73 +44,73 @@ public class BackGround {
 		this.index = index;
 
 		if (index != 2) {
-			this.flag = false;
+			flag = false;
 			bgImage = ResLoader.bgImage;
 		} else {
-			this.flag = true;
+			flag = true;
 			bgImage = ResLoader.endImage;
 		}
 
 		switch (index) {
 		case 0: {
 			for (int i = 0; i < 15; ++i) {
-				this.allObstruction.add(new Obstacle(i * 60, 540, 9, this));
+				obstacles.add(new Obstacle(i * 60, 540, 9, this));
 			}
 
 			// 绘制砖块和？
-			this.allObstruction.add(new Obstacle(120, 360, 4, this));
-			this.allObstruction.add(new Obstacle(300, 360, 0, this));
-			this.allObstruction.add(new Obstacle(360, 360, 4, this));
-			this.allObstruction.add(new Obstacle(420, 360, 0, this));
-			this.allObstruction.add(new Obstacle(480, 360, 4, this));
-			this.allObstruction.add(new Obstacle(540, 360, 0, this));
-			this.allObstruction.add(new Obstacle(420, 180, 4, this));
+			obstacles.add(new Obstacle(120, 360, 4, this));
+			obstacles.add(new Obstacle(300, 360, 0, this));
+			obstacles.add(new Obstacle(360, 360, 4, this));
+			obstacles.add(new Obstacle(420, 360, 0, this));
+			obstacles.add(new Obstacle(480, 360, 4, this));
+			obstacles.add(new Obstacle(540, 360, 0, this));
+			obstacles.add(new Obstacle(420, 180, 4, this));
 
 			// 绘制水管
-			this.allObstruction.add(new Obstacle(660, 540, 6, this));
-			this.allObstruction.add(new Obstacle(720, 540, 5, this));
-			this.allObstruction.add(new Obstacle(660, 480, 8, this));
-			this.allObstruction.add(new Obstacle(720, 480, 7, this));
+			obstacles.add(new Obstacle(660, 540, 6, this));
+			obstacles.add(new Obstacle(720, 540, 5, this));
+			obstacles.add(new Obstacle(660, 480, 8, this));
+			obstacles.add(new Obstacle(720, 480, 7, this));
 
 			// 加入隐藏的砖块
-			this.allObstruction.add(new Obstacle(660, 300, 3, this));
+			obstacles.add(new Obstacle(660, 300, 3, this));
 
 			// 绘制敌人（出现黄线就在private List allEnemy的List后面加泛型<Enemy>）
-			this.allEnemy.add(new Enemy(600, 480, true, 1, this));
-			this.allEnemy.add(new Enemy(690, 540, true, 2, 420, 540, this));
+			enemies.add(new Enemy(600, 480, true, 1, this));
+			enemies.add(new Enemy(690, 540, true, 2, 420, 540, this));
 		}
 			break;
 
 		case 1: {
 			for (int i = 0; i < 15; ++i) {
 				if (i != 10) {
-					this.allObstruction.add(new Obstacle(i * 60, 540, 9, this));
+					obstacles.add(new Obstacle(i * 60, 540, 9, this));
 				}
 			}
-			this.allObstruction.add(new Obstacle(60, 540, 6, this));
-			this.allObstruction.add(new Obstacle(120, 540, 5, this));
-			this.allObstruction.add(new Obstacle(60, 480, 6, this));
-			this.allObstruction.add(new Obstacle(120, 480, 5, this));
-			this.allObstruction.add(new Obstacle(60, 420, 8, this));
-			this.allObstruction.add(new Obstacle(120, 420, 7, this));
+			obstacles.add(new Obstacle(60, 540, 6, this));
+			obstacles.add(new Obstacle(120, 540, 5, this));
+			obstacles.add(new Obstacle(60, 480, 6, this));
+			obstacles.add(new Obstacle(120, 480, 5, this));
+			obstacles.add(new Obstacle(60, 420, 8, this));
+			obstacles.add(new Obstacle(120, 420, 7, this));
 
-			this.allObstruction.add(new Obstacle(240, 540, 6, this));
-			this.allObstruction.add(new Obstacle(300, 540, 5, this));
-			this.allObstruction.add(new Obstacle(240, 480, 6, this));
-			this.allObstruction.add(new Obstacle(300, 480, 5, this));
-			this.allObstruction.add(new Obstacle(240, 420, 6, this));
-			this.allObstruction.add(new Obstacle(300, 420, 5, this));
-			this.allObstruction.add(new Obstacle(240, 360, 8, this));
-			this.allObstruction.add(new Obstacle(300, 360, 7, this));
+			obstacles.add(new Obstacle(240, 540, 6, this));
+			obstacles.add(new Obstacle(300, 540, 5, this));
+			obstacles.add(new Obstacle(240, 480, 6, this));
+			obstacles.add(new Obstacle(300, 480, 5, this));
+			obstacles.add(new Obstacle(240, 420, 6, this));
+			obstacles.add(new Obstacle(300, 420, 5, this));
+			obstacles.add(new Obstacle(240, 360, 8, this));
+			obstacles.add(new Obstacle(300, 360, 7, this));
 		}
 			break;
 
 		case 2: {
 			for (int i = 0; i < 15; ++i) {
-				this.allObstruction.add(new Obstacle(i * 60, 540, 9, this));
+				obstacles.add(new Obstacle(i * 60, 540, 9, this));
 			}
-			this.allObstruction.add(new Obstacle(550, 180, 11, this));
-			this.allObstruction.add(new Obstacle(550, 480, 2, this));
+			obstacles.add(new Obstacle(550, 180, 11, this));
+			obstacles.add(new Obstacle(550, 480, 2, this));
 		}
 			break;
 
@@ -120,27 +122,19 @@ public class BackGround {
 	// 重置方法，将所有的障碍物和敌人返回到原有坐标，并将其状态也修改回
 	public void reset() {
 		// 将已经移除的障碍物和敌人放回到全部的内容中
-		this.allEnemy.addAll(this.removedEnemy);
-		this.allObstruction.addAll(this.removedObstruction);
+		enemies.addAll(this.enemiesRemoved);
+		obstacles.addAll(this.obstaclesRemoved);
 		// 调用所有障碍物和敌人的重置方法
-		for (int i = 0; i < this.allEnemy.size(); i++) {
-			this.allEnemy.get(i).reset();
+		for (int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).reset();
 		}
-		for (int i = 0; i < this.allObstruction.size(); i++) {
-			this.allObstruction.get(i).reset();
+		for (int i = 0; i < obstacles.size(); i++) {
+			obstacles.get(i).reset();
 		}
 	}
 
 	public boolean isFlag() {
 		return flag;
-	}
-
-	public List<Enemy> getAllEnemy() {
-		return allEnemy;
-	}
-
-	public List<Enemy> getRemovedEnemy() {
-		return removedEnemy;
 	}
 
 	public int getIndex() {
@@ -155,12 +149,20 @@ public class BackGround {
 		this.isOver = isOver;
 	}
 
-	public List<Obstacle> getAllObstruction() {
-		return allObstruction;
+	public List<Enemy> getEnemies() {
+		return enemies;
 	}
 
-	public List<Obstacle> getRemovedObstruction() {
-		return removedObstruction;
+	public List<Enemy> getEnemiesRemoved() {
+		return enemiesRemoved;
+	}
+
+	public List<Obstacle> getObstacles() {
+		return obstacles;
+	}
+
+	public List<Obstacle> getObstaclesRemoved() {
+		return obstaclesRemoved;
 	}
 
 	public boolean isDown() {

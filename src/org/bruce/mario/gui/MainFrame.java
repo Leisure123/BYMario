@@ -86,14 +86,14 @@ public class MainFrame extends JFrame implements KeyListener, Runnable {
 			g2.drawString("生命：" + mario.getLife(), 700, 100);
 
 			// 绘制敌人（如果把绘制敌人的代码放”绘制障碍物”后面，食人花就会出现在水管的外面）
-			Iterator<Enemy> iterEnemy = currBg.getAllEnemy().iterator();
+			Iterator<Enemy> iterEnemy = currBg.getEnemies().iterator();
 			while (iterEnemy.hasNext()) {
 				Enemy e = iterEnemy.next();
 				g2.drawImage(e.getShowImage(), e.getX(), e.getY(), this);
 			}
 
 			// 绘制障碍物
-			Iterator<Obstacle> iter = currBg.getAllObstruction().iterator();
+			Iterator<Obstacle> iter = currBg.getObstacles().iterator();
 			while (iter.hasNext()) {
 				Obstacle ob = iter.next();
 				g2.drawImage(ob.getShowImage(), ob.getX(), ob.getY(), this);

@@ -79,7 +79,7 @@ public class ResLoader {
 	 */
 	public static BufferedImage getBufferedImage(String imgName)
 			throws IOException {
-		String strPath = PathUtil.getFullPath(imgName);
+		String strPath = PathUtil.getPath(imgName);
 		InputStream is = Class.class.getResourceAsStream(strPath);
 		BufferedImage bi = ImageIO.read(is);
 		is.close();

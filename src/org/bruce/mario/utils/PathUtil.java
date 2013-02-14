@@ -116,7 +116,7 @@ public class PathUtil {
 	 * @param resFileName
 	 * @return
 	 */
-	public static String getFullPath(String resFileName) {
+	public static String getPath(String resFileName) {
 		String target = resFileName + "_does_Not_Exist";
 		String fullPath;
 		if (_runningPath.endsWith(".jar")) {
@@ -253,7 +253,7 @@ public class PathUtil {
 	public static void main(String args[]) {
 		System.out.println(getRunningPath());
 		System.out.println(getRunningParentPath());
-		System.out.println(getFullPath("w400_h300.png"));
-		System.out.println(getFullPath("BruceYang.jv"));
+		System.out.println(getPath("w400_h300.png"));
+		System.out.println(getPath("BruceYang.jv"));
 	}
 }
